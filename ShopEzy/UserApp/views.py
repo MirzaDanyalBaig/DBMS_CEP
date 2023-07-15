@@ -16,9 +16,6 @@ def signup(request):
     # Render the HTML template signup.html with the data in the context variable
     return render(request, 'UserApp/signup.html')
 
-def home(request):
-    # Render the HTML template home.html with the data in the context variable
-    return render(request, 'UserApp/home.html')
 
 def cart(request):
     # Render the HTML template cart.html with the data in the context variable
@@ -32,3 +29,9 @@ def product_details(request):
 
 def contact(request):
     return render(request, 'UserApp/contact.html')
+
+def admin_signin(request):
+    return render(request, 'UserApp/admin_signin.html')
+
+def admin_signup(request):
+    return render(request, 'UserApp/admin_signup.html')
