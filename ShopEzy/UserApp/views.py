@@ -37,8 +37,5 @@ def product_details(request):
 def contact(request):
     return render(request, 'UserApp/contact.html')
 
-def admin_signin(request):
-    return render(request, 'UserApp/admin_signin.html')
-
-def admin_signup(request):
-    return render(request, 'UserApp/admin_signup.html')
+def signin_admin(request):
+    return render(request, 'UserApp/signin_admin.html')
