@@ -16,6 +16,13 @@ def signup(request):
     # Render the HTML template signup.html with the data in the context variable
     return render(request, 'UserApp/signup.html')
 
+def products(request):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM product")
+        row = cursor.fetchall()
+        print(row)
+    # Render the HTML template products.html with the data in the context variable
+    return render(request, 'UserApp/products.html')
 
 def cart(request):
     # Render the HTML template cart.html with the data in the context variable
