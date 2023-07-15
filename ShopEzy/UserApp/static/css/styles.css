@@ -275,3 +275,33 @@ input {
 .home__img {
     justify-self: flex-end;
 }
+
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    background-color: var(--first-color);
+    border: 2px solid var(--first-color);
+    color: var(--body-color);
+    padding-inline: 1.75rem;
+    height: 49px;
+    line-height: 49px;
+    border-radius: .25rem;
+}
+
+/* SIGNIN/SIGNUP */
+.login-register__container {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: flex;
+}
+
+.login,
+.register {
+    border: 1px solid var(--border-color-alt);
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+.grid__register {
+    gap: 2.5rem;
+}
