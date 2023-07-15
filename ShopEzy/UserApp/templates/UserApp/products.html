@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .background-image {
+          background-image: url('static/image/index_background.png');
+          background-repeat: no-repeat;
+          background-position: calc(100% - 10px) center;
+        }
+      </style>
+    <title>ShopEzy</title>
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="header__top">
+              <div class="header__container container">
+                <div class="header__contact">
+                  <span>(+92) - 305 - 2620311</span>
+                  <span>Our Location</span>
+                </div> 
+                <p class="header__alert-news">
+                  Discover deals and new arrivals at ShopEzy.com
+                </p>
+                <a href="signin" class="header__top-action">
+                  Login / Sign Up
+                </a>
+              </div>
+            </div>
+      
+            <nav class="nav container">
+              <a href="index" class="nav__logo">
+                <img src="../../static/image/logo.png" alt="company_logo" class="nav__logo" style="height: 75px;">
+                <img src="../../static/image/name.png" alt="company_name" class="nav__logo">
+              </a>
+              <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                  <li class="nav__item">
+                    <a href="index" class="nav__link active-link">Home</a>
+                  </li>
+      
+                  <li class="nav__item">
+                    <a href="" class="nav__link">Contact</a>
+                  </li>
+      
+                  <li class="nav__item">
+                    <a href="" class="nav__link">About us</a>
+                  </li>
+                </ul>
+              </div>
+                <div class="header__user-actions">
+                  <a href="" class="header__action-btn">
+                    <img src="../../static/image/icon-heart.svg" alt="">
+                    <span class="count">3</span>
+                  </a>
+                </div>
+      
+            </nav>
+          </header>
+
+          <section class="products section container">
+            <div class="tab__btns">
+                <span class="tab__btn active-tab">Electronics</span>
+                <span class="tab__btn">Groceries</span>
+                <span class="tab__btn">Garments</span>
+            </div>
+
+            {% for product  in products %}
+            <div class="tab__items">
+                <div class="tab__item">
+                    <div class="products__container grid">
+                        <div class="product__item">
+                            <div class="product__banner">
+                                <a href="details.html" class="product__images">
+                                    <img src="{{ product.image}}" alt="images" class="product__img">
+                                </a>
+                                </div>
+
+                                <div class="product__content">
+                                    <a href ="details.html">
+                                        <h3 class="product__title">{{ product.name }}</h3>
+                                    </a>
+                                    <div class="product__price flex">
+                                        <span class="price">$100</span>
+                                    </div>
+                                    <a href="details.html" class="product__link">Add to Cart</a>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          </section>
+
+    </body>
