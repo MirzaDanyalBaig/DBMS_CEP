@@ -85,3 +85,10 @@ def profile_customer(request):
         # print(products)
         context = {'customers': customers,}
     return render(request, 'UserApp/profile_customer.html', context=context)
+
+def details_manager(requests):
+    with connection.cursor() as cursor:
+        cursor.execute("Select a.AdminID, a.AName, a.AEmail, a.APassword, a.PassCode, j.JobType, j.Salary from administrators a, job j Where a.PassCode = j.PassCode and a.PassCode <> 1;")
+        customers = cursor.fetchall()
+        # print(products)
+        context = {'customers': customers,}
