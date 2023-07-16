@@ -81,7 +81,7 @@ def checkout(request):
     return render(request, 'UserApp/checkout.html')
 
 def details(request):
-    # if request.method == "GET":
+    if request.method == "GET":
     #     with connection.cursor() as cursor:
     #         cursor.execute("SELECT * FROM product where product_id = {}", [request.GET.get('product_id')])
     #         row = cursor.fetchall()
