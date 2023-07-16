@@ -16,6 +16,8 @@ urlpatterns = [
     path("checkout", views.checkout, name="checkout"),
     path("details", views.details, name="details"),
     path("details_manager", views.details_manager, name="details_manager"),
+    path("details_supervisor", views.details_supervisor, name="details_supervisor"),
+    path("details_stockclerk", views.details_stockclerk, name="details_stockclerk"),
     path("contact", views.contact, name="contact"),
     path("profile_customer", views.profile_customer, name="profile_customer"),
 ]

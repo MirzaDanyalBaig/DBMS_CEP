@@ -149,5 +149,21 @@ def details_manager(request):
         cursor.execute("Select a.AdminID, a.AName, a.AEmail, a.APassword, a.PassCode, j.JobType, j.Salary from administrators a, job j Where a.PassCode = j.PassCode and a.PassCode <> 1;")
         details = cursor.fetchall()
         # print(products)
-        context = {'customers': details,}
+        context = {'details': details,}
     return render(request, 'UserApp/details_manager.html', context=context)
+
+def details_supervisor(request):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM customers;")
+        details = cursor.fetchall()
+        # print(products)
+        context = {'details': details,}
+    return render(request, 'UserApp/details_supervisor.html', context=context)
+
+def details_stockclerk(request):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM products;")
+        details = cursor.fetchall()
+        # print(products)
+        context = {'details': details,}
+    return render(request, 'UserApp/details_stockclerk.html', context=context)
