@@ -167,3 +167,12 @@ def details_stockclerk(request):
         # print(products)
         context = {'details': details,}
     return render(request, 'UserApp/details_stockclerk.html', context=context)
+
+
+def profile_admin(request):
+    with connection.cursor() as cursor:
+        cursor.execute("Select a.AName, a.AEmail, a.APassword, a.PassCode, j.JobType, j.Salary from administrators a, job j Where a.PassCode = j.PassCode;")
+        customers = cursor.fetchall()
+        # print(products)
+        context = {'customers': customers,}
+    return render(request, 'UserApp/profile_admin.html', context=context)
