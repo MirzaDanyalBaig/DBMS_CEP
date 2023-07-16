@@ -311,6 +311,7 @@ input {
 .tab__btns {
     display: flex;
     column-gap: .75rem;
+    margin-bottom: 2rem;
 }
 
 .tab__btn{
@@ -329,6 +330,80 @@ input {
     background-color: var(--second-color);
 }
 
-.product__container {
+.products__container {
     grid-template-columns: repeat(4, 1fr);
+}
+
+.products__item {
+    border: 1px solid var(--border-color);
+    border-radius: 1.5rem;
+}
+
+.product__banner {
+    padding: 0.625rem 0.75rem 0.75rem;
+}
+
+.product__banner,
+.products__images {
+    position: relative;
+}
+
+.products__images {
+    display: block;
+}
+
+.products__img.hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.product__actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    column-gap: 0.5rem;
+}
+
+.action__btn {
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: var(--first-color-alt);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: var(--small-font-size);
+    position: relative;
+}
+
+.action__btn::before,
+.action__btn::after {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.action__btn::before {
+    content: '';
+    top: -2px;
+    border: .5rem solid transparent;
+    border-top-color: var(--first-color);
+}
+
+.action__btn::after {
+    content: attr(aria-label);
+    bottom: 100%;
+    background-color: var(--first-color);
+    color: var(--body-color);
+    font-size: var(--small-font-size);
+    font-weight: var(--weight-500);
+}
+
+/* ACTIVE TAB */
+.tab__item:not(.active-tab) {
+    display: none;
 }

@@ -12,6 +12,7 @@
       </style>
     <title>ShopEzy</title>
     <link rel="stylesheet" href="../../static/css/styles.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
     </head>
 
     <body>
@@ -69,7 +70,40 @@
                       <div class="product__banner">
                         <a href="" class="product__images">
                           <img src="" alt="" class="product__img default">
+
                           <img src="" alt="" class="product__img hover">
+                        </a>
+                        <div class="product__actions">
+                          <a href="#" class="action__btn" aria-label="Quick View">
+                            <i class="fi fi-rs-eye"></i>
+                          </a>
+
+                          <a href="#" class="action__btn" aria-label="Add To Wishlist">
+                            <i class="fi fi-rs-heart"></i>
+                          </a>
+
+                        </div>
+
+                        <div class="product__badge light-pink">Hot</div>
+                      </div>
+
+                      <div class="product__content">
+                        <span class="product__category">Electronics</span>
+                        <a href="">
+                          <h3 class="product__title"></h3>
+                        </a>
+                        <div class="product__rating">
+                          <i class="fi fi-rs-star"></i>
+                          <i class="fi fi-rs-star"></i>
+                          <i class="fi fi-rs-star"></i>
+                          <i class="fi fi-rs-star"></i>
+                          <i class="fi fi-rs-star"></i>
+                        </div>
+                        <div class="product__price flex">
+                          <span class="new__price"> </span>
+                        </div>
+                        <a href="#" class="action__btn cart__btn" aria-label="Add To Cart">
+                          <i class="fi fi-rs-shopping-bag-add"></i>
                         </a>
                       </div>
                     </div>
@@ -79,10 +113,10 @@
             </section>
           </main>
           <ul>
-          {% for product in products %}
+          <!-- {% for product in products %}
             <li>{{ product.0 }}</li>
             <li>{{ product.1 }}</li>
             <li>{{ product.2 }}</li>
           {% endfor %}
-          </ul>
+          </ul> -->
     </body>
