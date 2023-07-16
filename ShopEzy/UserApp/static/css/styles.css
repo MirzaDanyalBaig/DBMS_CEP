@@ -765,7 +765,20 @@ input {
     display: inline-flex;
 }
 
+.form {
+    row-gap: 1rem;
+}
 
+.form__group {
+    grid-template-columns: repeat(2,1 fr);
+    gap: 1rem;
+}
+
+.textarea {
+    height: 200px;
+    padding-block: 1rem;
+    resize: none;
+}
 
 
 
