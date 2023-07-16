@@ -24,6 +24,12 @@ def products(request):
         context = {'products': products,}
     return render(request, 'UserApp/products.html', context=context)
 
+def products_garments(request):
+    return render(request, 'UserApp/products_garments.html')
+
+def products_groceries(request):
+    return render(request, 'UserApp/products_groceries.html')
+
 def cart(request):
     # Render the HTML template cart.html with the data in the context variable
     return render(request, 'UserApp/cart.html')
