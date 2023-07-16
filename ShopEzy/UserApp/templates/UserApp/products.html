@@ -63,13 +63,14 @@
                 <span class="tab__btn">Groceries</span>
               </div>
 
-              <div class="tab__items">
-                <div class="tab__item">
+              <div class="tab__items_outer">
+                <div class="tab__items_inner">
                   <div class="products__container grid">
-                    <div class="product__item">
+                    {% for product in products %}
+                    <div class="product__item tab__items">
                       <div class="product__banner">
                         <a href="" class="product__images">
-                          <img src="" alt="" class="product__img default">
+                          <img src='{{ product.5 }}' alt="" class="product__img default">
 
                           <img src="" alt="" class="product__img hover">
                         </a>
@@ -90,7 +91,7 @@
                       <div class="product__content">
                         <span class="product__category">Electronics</span>
                         <a href="">
-                          <h3 class="product__title"></h3>
+                          <h3 class="product__title">{{ product.1 }}</h3>
                         </a>
                         <div class="product__rating">
                           <i class="fi fi-rs-star"></i>
@@ -100,23 +101,17 @@
                           <i class="fi fi-rs-star"></i>
                         </div>
                         <div class="product__price flex">
-                          <span class="new__price"> </span>
+                          <span class="new__price">{{ product.2 }}</span>
                         </div>
                         <a href="#" class="action__btn cart__btn" aria-label="Add To Cart">
                           <i class="fi fi-rs-shopping-bag-add"></i>
                         </a>
                       </div>
                     </div>
+                    {% endfor %}
                   </div>
                 </div>
               </div>
             </section>
           </main>
-          <ul>
-          <!-- {% for product in products %}
-            <li>{{ product.0 }}</li>
-            <li>{{ product.1 }}</li>
-            <li>{{ product.2 }}</li>
-          {% endfor %}
-          </ul> -->
     </body>

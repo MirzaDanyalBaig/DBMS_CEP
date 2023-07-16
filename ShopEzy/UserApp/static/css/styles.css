@@ -1,8 +1,12 @@
+/* GOOGLE FONT */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Spartan:wght@400;500;600;700&display=swap');
 
+/* VARIABLE CSS */
 :root {
     --header-height: 4rem;
 
+    /* COLORS */
+    /* COLOR MODE HSL */
     --first-color: hsl(176, 88%, 27%);
     --first-color-alt: hsl(126, 44%, 94%);
     --second-color: hsl(34, 94%, 87%);
@@ -14,7 +18,8 @@
     --border-color: hsl(129, 36%, 85%);
     --border-color-alt: hsl(113, 15%, 90%);
 
-
+    /* FONT AND TYPOGRAPHY */
+    /* .5rem = 8px | 1rem = 16px ... */
     --body-font: 'Lato', sans-serif;
     --second-font: 'Spartan', sans-serif;
     --big-font-size: 3.5rem;
@@ -28,15 +33,17 @@
     --smaller-font-size: 0.75rem;
     --tiny-font-size: 0.6875rem;
 
-
+    /*  FONT WEIGHT */
     --weight-400: 400;
     --weight-500: 500;
     --weight-600: 600;
     --weight-700: 700;
-     
+    
+    /* TRANSITION */
     --transition: cubic-bezier(0, 0, 0.05, 1);
 }
 
+/* RESPONSIVE TYPOGRAPHY */
 @media screen and (max-width: 1200px) {
     :root{
         --big-font-size: ;
@@ -49,10 +56,10 @@
         --small-font-size: ;
         --smaller-font-size: ;
         --tiny-font-size: ;
-    
     }
 }
 
+/* BASE */
 * {
     margin: 0;
     padding: 0;
@@ -72,7 +79,10 @@ body {
     background-color: var(--body-color);
 }
 
-h1, h2, h3, h4 {
+h1, 
+h2, 
+h3, 
+h4 {
     font-family: var(--second-color);
     color: var(--title-color);
     font-weight: var(--weight-600);
@@ -102,6 +112,7 @@ input {
     outline: none;
 }
 
+/* REUSABLE CSS CLASSES */
 .container {
     max-width: 1240px;
     margin-inline: auto;
@@ -111,6 +122,10 @@ input {
 .grid {
     display: grid;
     gap: 2.5rem;
+}
+
+.section {
+    padding-block: 2rem;
 }
 
 .section--lg {
@@ -125,6 +140,7 @@ input {
     font-size: var(--small-font-size);
 }
 
+/* READER AND NAV */
 .header__top {
     background-color: var(--first-color-alt);
     border-bottom: 1px solid var(--first-color);
@@ -170,14 +186,18 @@ input {
     column-gap: 1rem;
 }
 
-.nav__logo {
-    display: flex;
-    width: 175px;
+.nav__logo-img {
+    width: 150px;
 }
 
 .nav__menu {
     width: 100%;
     margin-left: 5rem;
+}
+
+.nav__logo {
+    display: flex;
+    width: 175px;
 }
 
 .nav__list {
@@ -276,7 +296,6 @@ input {
     justify-self: flex-end;
 }
 
-
 /* BUTTONS */
 .btn {
     display: inline-block;
@@ -287,6 +306,63 @@ input {
     height: 49px;
     line-height: 49px;
     border-radius: .25rem;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: var(--first-color);
+}
+
+/* CATEGORIES */
+.categories {
+    overflow: hidden;
+}
+
+.category_item {
+    text-align: center;
+    border: 1px solid var(--border-color);
+    padding: 0.625rem 0.625rem 1.25rem;
+    border-radius: 1.25rem;
+}
+
+.category__img {
+    border-radius: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.category__title {
+    color: var(--text-color);
+}
+
+/* Swiper class */
+.swiper {
+    overflow: initial;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    content: '';
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    top: -1.875rem;
+    background-color: var(--first-color-alt);
+    border: 1px solid var(--border-color);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: var(--first-color);
+    font-size: var(--tiny-font-size);
+}
+
+.swiper-button-prev {
+    left: initial;
+    right: 2.5rem;
+}
+
+.swiper-button-next {
+    right: 0;
 }
 
 /* SIGNIN/SIGNUP */
@@ -314,7 +390,7 @@ input {
     margin-bottom: 2rem;
 }
 
-.tab__btn{
+.tab__btn {
     background-color: var(--container-color);
     color: var(--title-color);
     padding: 1rem 1.25rem .875rem;
@@ -323,11 +399,6 @@ input {
     font-size: var(--small-font-size);
     font-weight: var(--weight-600);
     cursor: pointer;
-}
-
-.tab__btn.active-tab {
-    color: var(--first-color);
-    background-color: var(--second-color);
 }
 
 .products__container {
@@ -399,11 +470,79 @@ input {
     bottom: 100%;
     background-color: var(--first-color);
     color: var(--body-color);
-    font-size: var(--small-font-size);
-    font-weight: var(--weight-500);
+    font-size: var(--tiny-font-size);
+    white-space: nowrap;
+    padding-inline: 0.625rem;
+    border-radius: 0.25rem;
+    line-height: 2.58;
+}
+
+.product__badge {
+    position: absolute;
+    left: 1.25rem;
+    top: 1.25rem;
+    background-color: var(--first-color);
+    color: var(--body-color);
+    padding: .25rem .625rem;
+    border-radius: 2.5rem;
+    font-size: var(--tiny-font-size);
+}
+
+.product__badge.light-pink {
+    background-color: hsl(341, 100%, 73%);
+}
+
+.product__badge.light-green {
+    background-color: hsl(155, 20%, 67%);
+}
+
+.product__badge.light-orange {
+    background-color: hsl(24, 100%, 73%);
+}
+
+.product__badge.light-blue {
+    background-color: hsl(202, 53%, 76%);
+}
+
+/* TAB ITEMS */
+.tab__items {
+    position: relative;
+    border: var(--border-color);
+    box-shadow: 0 5px 20px rgba(0,0,0,.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 20px 40px;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.tab__items:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tab__item {
+    position: relative;
+    border: var(--border-color);
+
+    display: flex;
 }
 
 /* ACTIVE TAB */
+.tab__btn.active-tab {
+    color: var(--first-color);
+    background-color: var(--second-color);
+}
+
 .tab__item:not(.active-tab) {
     display: none;
+}
+
+/* PRODUCT HOVER */
+.products__img.hover,
+.product__actions,
+.action__btn::before,
+.action__btn::after {
+    opacity: 0;
 }
