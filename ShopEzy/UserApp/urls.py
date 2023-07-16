@@ -4,14 +4,15 @@ from UserApp import views
 
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("index", views.index, name="index"),
-    path("signin", views.signin, name="signin"),
-    path("signin_admin", views.signin_admin, name="signin_admin"),
-    path("admin", views.admin, name="admin"),
-    path("products", views.products, name="products"),
-    path("cart", views.cart, name="cart"),
-    path("checkout", views.checkout, name="checkout"),
-    path("details", views.details, name="details"),
-    path("contact", views.contact, name="contact"),
+    path("", views.index, name="ShopEzy - Shopping Made Easier"),
+    path("index", views.index, name="ShopEzy - Shopping Made Easier"),
+    path("signin", views.signin, name="ShopEzy - Shopping Made Easier"),
+    path("signin_admin", views.signin_admin, name="ShopEzy - Shopping Made Easier"),
+    path("products", views.products, name="ShopEzy - Shopping Made Easier"),
+    path("products_garments", views.products_garments, name="ShopEzy - Shopping Made Easier"),
+    path("products_groceries", views.products_groceries, name="ShopEzy - Shopping Made Easier"),
+    path("cart", views.cart, name="ShopEzy - Shopping Made Easier"),
+    path("checkout", views.checkout, name="ShopEzy - Shopping Made Easier"),
+    path("details", views.details, name="ShopEzy - Shopping Made Easier"),
+    path("contact", views.contact, name="ShopEzy - Shopping Made Easier"),
 ]
