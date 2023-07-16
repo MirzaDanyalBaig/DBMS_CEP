@@ -30,7 +30,7 @@
                 </a>
               </div>
             </div>
-      
+
             <nav class="nav container">
               <a href="index" class="nav__logo">
                 <img src="../../static/image/logo.png" alt="company_logo" class="nav__logo" style="height: 75px;">
@@ -54,5 +54,35 @@
             </nav>
           </header>
 
-          
+          <main class="main">
+            <section class="products section container">
+              <div class="tab__btns">
+                <span class="tab__btn active-tab">Electronics</span>
+                <span class="tab__btn">Garments</span>
+                <span class="tab__btn">Groceries</span>
+              </div>
+
+              <div class="tab__items">
+                <div class="tab__item">
+                  <div class="products__container grid">
+                    <div class="product__item">
+                      <div class="product__banner">
+                        <a href="" class="product__images">
+                          <img src="" alt="" class="product__img default">
+                          <img src="" alt="" class="product__img hover">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+          <ul>
+          {% for product in products %}
+            <li>{{ product.0 }}</li>
+            <li>{{ product.1 }}</li>
+            <li>{{ product.2 }}</li>
+          {% endfor %}
+          </ul>
     </body>
