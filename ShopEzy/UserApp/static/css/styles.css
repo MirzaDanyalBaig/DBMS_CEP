@@ -303,6 +303,7 @@ input {
 }
 
 .grid__register {
+    display: grid;
     gap: 2.5rem;
 }
 
@@ -316,7 +317,7 @@ input {
     background-color: var(--container-color);
     color: var(--title-color);
     padding: 1rem 1.25rem .875rem;
-    border_radius: .25rem;
+    border-radius: .25rem;
     font-family: var(--normal-font-size);
     font-size: var(--small-font-size);
     font-weight: var(--weight-600);

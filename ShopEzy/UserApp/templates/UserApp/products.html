@@ -15,7 +15,12 @@
     </head>
 
     <body>
-        <header class="header">
+      <ul>
+        {% for product in product_info %}
+            <li>{{ product.ProdID }} - ${{ product.PPrice }}</li>
+        {% endfor %}
+      </ul>
+        <!-- <header class="header">
             <div class="header__top">
               <div class="header__container container">
                 <div class="header__contact">
@@ -67,8 +72,14 @@
                 <span class="tab__btn">Groceries</span>
                 <span class="tab__btn">Garments</span>
             </div>
+          {% for product in product_info %}
+          <div>
+            <td>{{product.ProdID}}</td>
+            <td>{{product.PName}}</td>
+            <td>{{product.PPrice}}</td>
+          </div>
+          {% endfor %}
 
-            {% for product  in products %}
             <div class="tab__items">
                 <div class="tab__item">
                     <div class="products__container grid">
@@ -81,7 +92,7 @@
 
                                 <div class="product__content">
                                     <a href ="details.html">
-                                        <h3 class="product__title">{{ product.name }}</h3>
+                                        <h3 class="product__title">hi</h3>
                                     </a>
                                     <div class="product__price flex">
                                         <span class="price">$100</span>
@@ -92,8 +103,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-          </section>
+            </div> -->
+          <!-- </section> -->
 
     </body>

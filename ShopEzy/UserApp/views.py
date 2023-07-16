@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.db import connection
+from UserApp.models import Products
 
 
 # Create your views here.
@@ -17,12 +18,13 @@ def signup(request):
     return render(request, 'UserApp/signup.html')
 
 def products(request):
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM product")
-        row = cursor.fetchall()
-        print(row)
+    product_info = Products.objects.all()
+    # with connection.cursor() as cursor:
+    #     cursor.execute("SELECT * FROM product")
+    #     row = cursor.fetchall()
+    #     print(row)
     # Render the HTML template products.html with the data in the context variable
-    return render(request, 'UserApp/products.html')
+    return render(request, 'UserApp/products.html', {'product_infp': product_info})
 
 def cart(request):
     # Render the HTML template cart.html with the data in the context variable
