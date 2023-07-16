@@ -73,10 +73,11 @@
                     {% for product in products %}
                     <div class="product__item tab__items">
                       <div class="product__banner">
-                        <a href="" name="" class="product__images">
-                          <img src='{{ product.5 }}' alt="" class="product__img default">
-
-                          <img src="" alt="" class="product__img hover">
+                        <a href="details" class="product__images">
+                          <form method="", hidden>
+                            <input id="product" type="number", value='{{ product.0 }}', hidden>
+                          </form>
+                            <img src='{{ product.5 }}' alt="" class="product__img default">
                         </a>
                         <div class="product__actions">
                           <a href="#" class="action__btn" aria-label="Quick View">
