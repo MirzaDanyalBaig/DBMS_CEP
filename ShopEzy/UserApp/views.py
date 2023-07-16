@@ -24,7 +24,7 @@ def products(request):
     #     row = cursor.fetchall()
     #     print(row)
     # Render the HTML template products.html with the data in the context variable
-    return render(request, 'UserApp/products.html', {'product_infp': product_info})
+    return render(request, 'UserApp/products.html', {'product_info': product_info})
 
 def cart(request):
     # Render the HTML template cart.html with the data in the context variable

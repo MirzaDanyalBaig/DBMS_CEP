@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!--=============== FLATICON ===============-->
-    <link rel="stylesheet" href="../../static/css/styles.css" />
+    <link rel="stylesheet" href="" />
 
     <!--=============== SWIPER CSS ===============-->
     <link rel="stylesheet" href="" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="../../static/css/styles.css" />
 
     <title>ShopEzy</title>
   </head>
@@ -75,30 +75,32 @@
           <div class="login">
             <h3 class="section__title">Sign In</h3>
 
-            <form action="" class="form grid">
-              <input type="email" placeholder="What's your email" class="form__input">
-              <input type="password" placeholder="What's your password" class="form__input">
-              <input type="password" placeholder="What's your Passcode" class="form__input">
+            <form method="POST" action="/signin_admin" class="form grid">
+              {% csrf_token %}
+              <input type="email" name="email" placeholder="What's your Email" class="form__input">
+              <input type="password" name="password" placeholder="What's your Password" class="form__input">
+              <input type="password" name="passcode" placeholder="What's your Passcode" class="form__input">
               <div class="form__btn">
-                <button class="btn">Sign In as Admin</button>
+                <button type="submit" class="btn">Sign In as Admin</button>
               </div>
             </form>
           </div>
 
           <div class="register">
             <h3 class="section__title">Create an Account</h3>
-            <form action="" class="form grid">
+            <form method="POST" action="/signin_admin" class="form grid">
+              {% csrf_token %}
               <div class="grid__register" style="display: flex;">
-                <input type="text" placeholder="What's Your Name" class="form__input">
-                <input type="email" placeholder="What's Your Email" class="form__input">               
+                <input type="text" name="name" placeholder="What's Your Name" class="form__input">
+                <input type="email" name="email" placeholder="What's Your Email" class="form__input">               
               </div>
               <div class="grid__register" style="display: flex;">
-                <input type="text" placeholder="What's Your Job" class="form__input">
-                <input type="password" placeholder="What's Your Passcode" class="form__input">
+                <input type="text" name="job" placeholder="What's Your Job" class="form__input">
+                <input type="password" name="passcode" placeholder="What's Your Passcode" class="form__input">
               </div>
               <div class="grid__register" style="display: flex;">
-                <input type="password" placeholder="What's Your Password" class="form__input">
-                <input type="password" placeholder="Confirm Password" class="form__input">  
+                <input type="password" name="password" placeholder="What's Your Password" class="form__input">
+                <input type="password" name="password_2" placeholder="Confirm Password" class="form__input">  
               </div>
               <div class="form__btn">
                 <button class="btn">Register as Admin</button>

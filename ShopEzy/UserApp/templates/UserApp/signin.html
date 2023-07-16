@@ -75,7 +75,8 @@
           <div class="login">
             <h3 class="section__title">Sign In</h3>
 
-            <form action="" class="form grid">
+            <form method="POST" action="/signin" class="form grid">
+              {% csrf_token %}
               <input type="email" placeholder="What's your email" class="form__input">
               <input type="password" placeholder="What's your password" class="form__input">
               <div class="form__btn">
@@ -86,7 +87,8 @@
 
           <div class="register">
             <h3 class="section__title">Create an Account</h3>
-            <form action="" class="form grid">
+            <form method="POST" action="/signin" class="form grid">
+              {% csrf_token %}
               <div class="grid__register" style="display: flex;">
                 <input type="text" placeholder="What's Your Name" class="form__input">
                 <input type="email" placeholder="What's Your Email" class="form__input">               
