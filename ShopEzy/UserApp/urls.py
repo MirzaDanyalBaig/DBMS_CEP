@@ -11,6 +11,6 @@ urlpatterns = [
     path("products", views.products, name="ShopEzy - Shopping Made Easier"),
     path("cart", views.cart, name="ShopEzy - Shopping Made Easier"),
     path("checkout", views.checkout, name="ShopEzy - Shopping Made Easier"),
-    path("product_details", views.product_details, name="ShopEzy - Shopping Made Easier"),
+    path("details", views.details, name="ShopEzy - Shopping Made Easier"),
     path("contact", views.contact, name="ShopEzy - Shopping Made Easier"),
 ]
