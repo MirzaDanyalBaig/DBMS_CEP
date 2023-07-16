@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.db import connection
 from django.contrib import messages
 from django.urls import reverse
+from django.contrib.sessions.backends.db import SessionStore
 
 # Create your views here.
 def index(request):
@@ -12,12 +13,14 @@ def index(request):
 def signin(request):
     if request.method == "POST":
         data = request.POST
-        print(data)
         if len(data) == 3:
             with connection.cursor() as cursor:
                 cursor.execute("SELECT * FROM CUSTOMERS WHERE CEMAIL = %s AND CPASSWORD = %s", [request.POST.get('email'), request.POST.get('password')])
                 row = cursor.fetchone()
-                print(row)
+                session = SessionStore(session_key=request.session.session_key)
+                id, *_ = row
+                session['customer_id'] = id
+                session.save()
                 cursor.close()
                 connection.close()
                 if row:
@@ -147,9 +150,10 @@ def signin_admin(request):
 
 def profile_customer(request):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers")
+        customer_id = request.session.get('customer_id')
+        cursor.execute("SELECT * FROM customers WHERE CustID = %s", [customer_id])
         customers = cursor.fetchall()
-        # print(products)
+        print(customer_id, customers)
         context = {'customers': customers,}
     return render(request, 'UserApp/profile_customer.html', context=context)
 
@@ -157,7 +161,6 @@ def details_manager(request):
     with connection.cursor() as cursor:
         cursor.execute("Select a.AdminID, a.AName, a.AEmail, a.APassword, a.PassCode, j.JobType, j.Salary from administrators a, job j Where a.PassCode = j.PassCode and a.PassCode <> 1;")
         details = cursor.fetchall()
-        # print(products)
         context = {'details': details,}
     return render(request, 'UserApp/details_manager.html', context=context)
 
