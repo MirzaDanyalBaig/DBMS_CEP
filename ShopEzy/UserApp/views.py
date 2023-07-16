@@ -177,6 +177,14 @@ def details_stockclerk(request):
         context = {'details': details,}
     return render(request, 'UserApp/details_stockclerk.html', context=context)
 
+def shopping_history(request):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM order;")
+        details = cursor.fetchall()
+        # print(products)
+        context = {'details': details,}
+    return render(request, 'UserApp/shopping_history.html', context=context)
+    
 
 def profile_admin(request):
     with connection.cursor() as cursor:
