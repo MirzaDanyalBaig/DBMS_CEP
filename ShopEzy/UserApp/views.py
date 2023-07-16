@@ -4,11 +4,6 @@ from django.db import connection
 from django.contrib import messages
 from django.urls import reverse
 
-# with connection.cursor() as cursor:
-#     cursor.execute("SELECT * FROM products")
-#     rows = cursor.fetchall()
-#     print(rows)
-
 # Create your views here.
 def index(request):
     # Render the HTML template index.html with the data in the context variable
@@ -139,3 +134,12 @@ def signin_admin(request):
         else:
             return render(request, 'UserApp/signin_admin.html')
     return render(request, 'UserApp/signin_admin.html')
+
+
+def profile_customer(request):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM customers")
+        customers = cursor.fetchall()
+        # print(products)
+        context = {'customers': customers,}
+    return render(request, 'UserApp/profile_customer.html', context=context)
