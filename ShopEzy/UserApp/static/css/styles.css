@@ -633,12 +633,12 @@ input {
 }
 
 .table tr th,
-table tr td {
+.table tr td {
     border-top: 1px solid var(--border-color-alt);
 }
 
 .table tr th,
-table tr td {
+.table tr td {
     border-bottom: 1px solid var(--border-color-alt);
 }
 
@@ -1318,4 +1318,81 @@ input {
 .action__btn::before,
 .action__btn::after {
     opacity: 0;
+}
+
+/* new table */
+.tablenew__container {
+    overflow-x: auto;
+}
+
+.tablenew {
+    table-layout: fixed;
+    margin-bottom: 2rem;
+}
+
+.tablenew tr th,
+.tablenew tr td {
+    border-top: 1px solid var(--border-color-alt);
+}
+
+.tablenew tr th,
+.tablenew tr td {
+    border-bottom: 1px solid var(--border-color-alt);
+}
+
+.tablenew tr th:nth-child(1),
+.tablenew tr td:nth-child(1) {
+    width: 180px;
+}
+
+.tablenew tr th:nth-child(2),
+.tablenew tr td:nth-child(2) {
+    width: 180px;
+}
+
+.tablenew tr th:nth-child(3),
+.tablenew tr td:nth-child(3) {
+    width: 180px;
+}
+
+.tablenew tr th:nth-child(4),
+.tablenew tr td:nth-child(4) {
+    width: 180px;
+}
+
+.tablenew tr th:nth-child(5),
+.tablenew tr td:nth-child(5) {
+    width: 180px;
+}
+
+.tablenew tr th:nth-child(6),
+.tablenew tr td:nth-child(6) {
+    width: 180px;
+}
+
+.tablenew__img {
+    width: 80px;
+}
+
+.tablenew tr th,
+.tablenew tr td {
+    padding: .5rem;
+    text-align: center;
+}
+
+.tablenew__title,
+.tablenew__description,
+.tablenew__price,
+.tablenew__subtotal,
+.tablenew__trash {
+    font-size: var(--small-font-size);
+}
+
+.tablenew__title {
+    color: var(--first-color);
+}
+
+.tablenew__description {
+    max-width: 250px;
+    margin-inline: auto;
 }

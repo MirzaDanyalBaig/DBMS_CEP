@@ -44,7 +44,7 @@
                   </li>
       
                   <li class="nav__item">
-                    <a href="cart" class="nav__link active-link">Employee Details</a>
+                    <a href="cart" class="nav__link active-link">Product Details</a>
                   </li>
                 </ul>
               </div>
@@ -52,26 +52,24 @@
           </header>
 
           <main class="main">
-            <h1 class="home__title" style="text-align: center;"><span>Employee </span>Details</h1>
-            <table class="table" style="padding: 0.6rem;;">
-                <tr class="table tr th">
-                    <th>Employee ID</th>
-                    <th>Employee Name</th>
-                    <th>Employee Email</th>
-                    <th>Employee Password</th>
-                    <th>Employee Job</th>
-                    <th>Employee Salary</th>
-                </tr>
-                {% for detail in details %}
-                <tr class="table tr th">
-                    <td>{{ detail.0 }}</td>
-                    <td>{{ detail.1 }}</td>
-                    <td>{{ detail.2 }}</td>
-                    <td>{{ detail.3 }}</td>
-                    <td>{{ detail.4 }}</td>
-                    <td>{{ detail.5 }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+            <h1 class="home__title" style="text-align: center;"><span>Product </span>Details</h1>
+            <div style="padding-left: 10%;">
+                <table class="table" style="padding: 0.6rem; text-align: center;">
+                    <tr class="table tr th">
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Product Quantity</th>
+                    </tr>
+                    {% for detail in details %}
+                    <tr class="table tr th">
+                        <td>{{ detail.0 }}</td>
+                        <td>{{ detail.1 }}</td>
+                        <td>{{ detail.2 }}</td>
+                        <td>{{ detail.3 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
           </main>
     </body>
