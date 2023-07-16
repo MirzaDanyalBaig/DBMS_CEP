@@ -553,7 +553,11 @@ input {
     grid-template-columns: 2fr 3fr;    
 }
 
+
+
 .details__img {
+    border: 1px solid var(--border-color-alt);
+    border-radius: 5%;
     margin-bottom: .5rem;
 }
 

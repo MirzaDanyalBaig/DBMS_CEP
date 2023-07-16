@@ -81,11 +81,20 @@ def checkout(request):
     return render(request, 'UserApp/checkout.html')
 
 def details(request):
-    # if request.method == "GET":
-    #     with connection.cursor() as cursor:
-    #         cursor.execute("SELECT * FROM product where product_id = {}", [request.GET.get('product_id')])
-    #         row = cursor.fetchall()
-    #         print(row)
+    if request.method == "POST":
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM PRODUCTS WHERE PRODID = %s", [request.POST.get('product_id')])
+            row = cursor.fetchone()
+            cursor.execute("SELECT * FROM ELECTRONICS WHERE PRODID = %s", [request.POST.get('product_id')])
+            row_2 = cursor.fetchone()
+            cursor.close()
+            connection.close()
+            if row:
+                if row[3] == 0 or row[3] == None or row[3] == "0" or row[3] == "None" or row[3] == "NULL":
+                    avail = "Out of Stock"
+                else:
+                    avail = "In Stock"
+                return render(request, 'UserApp/details.html', context={'available': avail, 'product': row, 'product_2': row_2})
     return render(request, 'UserApp/details.html')
 
 def contact(request):

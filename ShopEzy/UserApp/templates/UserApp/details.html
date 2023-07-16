@@ -55,33 +55,30 @@
           </header>
 
           <section class="details section--lg">
+            {% if product %}
             <div class="details__container container grid">
                 <div class="details__group">
-                    <img src="static/image/PS5.jpg" alt="image" class="details__img"/>
-                    <div class="details__small-images grid">
-                        <img src="static/image/PS5.jpg" alt="images" class="details__small-img" />
-                        <img src="static/image/PS5_2.jpg" alt="images" class="details__small-img" />
-                        <img src="static/image/PS5_3.jpg" alt="images" class="details__small-img" />   
-                    </div>
+                    <img src="{{ product.5 }}" alt="image" class="details__img"/>
                 </div>
 
                 <div class="details__group">
-                    <h3 class="details__title">Nigga</h3>
-                    <p class="details__brand">Brand: <span>Slave</span></p>
+                    <h3 class="details__title">{{ product.1 }}</h3>
+                    <p class="details__brand">Company: <span>{{  product_2.1  }}</span></p>
                     <div class="details__price flex">
-                        <span class="price">2$</span>
+                        <span class="price">{{ product.2 }} Rupees</span>
                     </div>
 
-                    <p class="short__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis libero quam architecto, similique velit exercitationem sequi ab iste. Corrupti officia, reiciendis ea praesentium autem repellat sint dolor saepe exercitationem reprehenderit.</p>
+                    <pre class="short__description">{{ product.4 }}</pre>
                     <br>
-                    <p class="availability">Availability: In Stock</p>
+                    <p class="availability">Availability: {{ available }}</p>
                     <br>
 
                     <div class="details__action">
-                        <input type="number" class="quantity" value="3" />
+                        <input type="number" name="quantity" class="quantity" value="3" />
                         <a href="#" class="btn btn--sm">Add to Cart</a>
                     </div>
                 </div>
-            </div> 
+            </div>
+            {% endif %} 
           </section>
     </body>

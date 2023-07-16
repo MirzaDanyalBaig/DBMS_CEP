@@ -73,13 +73,14 @@
                     {% for product in products %}
                     <div class="product__item tab__items">
                       <div class="product__banner">
-                        <a href="details" class="product__images">
-                          <form method="", hidden>
-                            <input id="product" type="number", value='{{ product.0 }}', hidden>
-                          </form>
-                            <img src='{{ product.5 }}' alt="" class="product__img default">
+                        <form id="product-form-{{ product.0 }}" method="POST" action="/details" hidden>
+                          {% csrf_token %}
+                          <input type="hidden" name="product_id" value="{{ product.0 }}">
+                        </form>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('product-form-{{ product.0 }}').submit();" class="product__images">
+                          <img src="{{ product.5 }}" alt="" class="product__img default">
                         </a>
-                        <div class="product__actions">
+                        <!-- <div class="product__actions">
                           <a href="#" class="action__btn" aria-label="Quick View">
                             <i class="fi fi-rs-eye"></i>
                           </a>
@@ -88,9 +89,9 @@
                             <i class="fi fi-rs-heart"></i>
                           </a>
 
-                        </div>
+                        </div> -->
 
-                        <div class="product__badge light-pink">Hot</div>
+                        <!-- <div class="product__badge light-pink">Hot</div> -->
                       </div>
 
                       <div class="product__content">
@@ -119,4 +120,10 @@
               </div>
             </section>
           </main>
+
+          <script>
+            function submitForm(formId) {
+              document.getElementById(formId).submit();
+            }
+          </script>
     </body>
