@@ -27,7 +27,7 @@
                   Discover deals and new arrivals at ShopEzy.com
                 </p>
                 <p class="header__top-action">
-                  12 Task Remaining
+                  Welcome!!
                 </p>
               </div>
             </div>
@@ -39,28 +39,33 @@
               </a>
               <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                  <li class="nav__item">
-                    <a href="profile_admin" class="nav__link">Profile</a>
+                    <a href="products" class="nav__link">Products</a>
                   </li>
       
                   <li class="nav__item">
-                    <a href="#" class="nav__link active-link">Employee Details</a>
+                    <a href="cart" class="nav__link">Cart</a>
                   </li>
+      
+                  <li class="nav__item">
+                    <a href="#" class="nav__link active-link">Shopping History</a>
+                  </li>
+
+                  <li class="nav__item">
+                    <a href="profile_customer" class="nav__link">Profile</a>
                 </ul>
               </div>
             </nav>
-          </header>
+        </header>
 
-          <main class="main">
-            <h1 class="home__title" style="text-align: center;"><span>Employee </span>Details</h1>
-            <table class="table" style="padding: 0.6rem;;">
-                <tr class="table tr th">
-                    <th>Employee ID</th>
-                    <th>Employee Name</th>
-                    <th>Employee Email</th>
-                    <th>Employee Password</th>
-                    <th>Employee Job</th>
-                    <th>Employee Salary</th>
+        <main class="main">
+              <h1 class="home__title" style="text-align: center;"><span>Shopping </span>History</h1>
+              <table class="tablenew" style="padding: 0.6rem;;">
+                <tr class="table tr th" style="align-items: center;">
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Order Quantity</th>
+                    <th>Order Date</th>
+                    <th>Order Time</th>
                 </tr>
                 {% for detail in details %}
                 <tr class="table tr th">
@@ -69,9 +74,9 @@
                     <td>{{ detail.2 }}</td>
                     <td>{{ detail.3 }}</td>
                     <td>{{ detail.4 }}</td>
-                    <td>{{ detail.5 }}</td>
                 </tr>
                 {% endfor %}
             </table>
-          </main>
+        </main>
     </body>
+</html>
