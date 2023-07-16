@@ -18,9 +18,9 @@ def signin(request):
     # Render the HTML template signin.html with the data in the context variable
     return render(request, 'UserApp/signin.html')
 
-def admin(request):
+def manager_admin(request):
     # Render the HTML template admin.html with the data in the context variable
-    return render(request, 'UserApp/admin.html')
+    return render(request, 'UserApp/manager_admin.html')
 
 def products(request):
     with connection.cursor() as cursor:
@@ -72,11 +72,12 @@ def signin_admin(request):
                     messages.error(request, 'Invalid credentials.')
                     return redirect(reverse('signin_admin'))
         elif len(data) == 7:
-            with connection.cursor() as cursor:
-                cursor.execute("INSERT INTO ADMINISTRATORS(ANAME, AEMAIL, AJOB, PASSCODE, PASSWORD) VALUES(%s, %s, %s, %s, %s)", [request.POST.get('name'), request.POST.get('email'), request.POST.get('job'), request.POST.get('passcode'), request.POST.get('password')])
-                cursor.close()
-                connection.close()
-                return redirect(reverse('signin_admin'))
+            if request.POST.get('password') != request.POST.get('confirm_password'):
+                with connection.cursor() as cursor:
+                    cursor.execute("INSERT INTO ADMINISTRATORS(ANAME, AEMAIL, AJOB, PASSCODE, PASSWORD) VALUES(%s, %s, %s, %s, %s)", [request.POST.get('name'), request.POST.get('email'), request.POST.get('job'), request.POST.get('passcode'), request.POST.get('password')])
+                    cursor.close()
+                    connection.close()
+                    return redirect(reverse('signin_admin'))
         else:
             return render(request, 'UserApp/signin_admin.html')
     return render(request, 'UserApp/signin_admin.html')
