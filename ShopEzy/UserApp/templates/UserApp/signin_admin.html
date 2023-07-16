@@ -110,6 +110,14 @@
         </div>
       </section>
 
+      {% if messages %}
+        {% for message in messages %}
+          <script>
+            alert("{{ message }}");
+          </script>
+        {% endfor %}
+      {% endif %}
+
       <!--=============== NEWSLETTER ===============-->
       <section class="newsletter"></section>
     </main>

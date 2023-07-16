@@ -77,10 +77,10 @@
 
             <form method="POST" action="/signin" class="form grid">
               {% csrf_token %}
-              <input type="email" placeholder="Email" class="form__input">
-              <input type="password" placeholder="Password" class="form__input">
+              <input type="email" name="email" placeholder="Email" class="form__input">
+              <input type="password" name="password" placeholder="Password" class="form__input">
               <div class="form__btn">
-                <button class="btn">Sign In</button>
+                <button type="submit" class="btn">Sign In</button>
               </div>
             </form>
           </div>
@@ -90,16 +90,16 @@
             <form method="POST" action="/signin" class="form grid">
               {% csrf_token %}
               <div class="grid__register" style="display: flex;">
-                <input type="text" placeholder="Name" class="form__input">
-                <input type="email" placeholder="Email" class="form__input">               
+                <input type="text" name="name" placeholder="Name" class="form__input">
+                <input type="email" name="email" placeholder="Email" class="form__input">               
               </div>
               <div class="grid__register" style="display: flex;">
-                <input type="text" placeholder="Country Name" class="form__input">
-                <input type="text" placeholder="City Name" class="form__input">
+                <input type="text" name="country" placeholder="Country Name" class="form__input">
+                <input type="text" name="city" placeholder="City Name" class="form__input">
               </div>
               <div class="grid__register" style="display: flex;">
-                <input type="password" placeholder="Password" class="form__input">
-                <input type="password" placeholder="Confirm Password" class="form__input">  
+                <input type="password" name="password" placeholder="Password" class="form__input">
+                <input type="password" name="password_2" placeholder="Confirm Password" class="form__input">  
               </div>
 
 
@@ -110,6 +110,14 @@
           </div>
         </div>
       </section>
+
+      {% if messages %}
+        {% for message in messages %}
+          <script>
+            alert("{{ message }}");
+          </script>
+        {% endfor %}
+      {% endif %}
 
       <!--=============== NEWSLETTER ===============-->
       <section class="newsletter"></section>

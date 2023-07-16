@@ -10,6 +10,47 @@ def index(request):
     return render(request, 'UserApp/index.html')
 
 def signin(request):
+    if request.method == "POST":
+        data = request.POST
+        print(data)
+        if len(data) == 3:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM CUSTOMERS WHERE CEMAIL = %s AND CPASSWORD = %s", [request.POST.get('email'), request.POST.get('password')])
+                row = cursor.fetchone()
+                print(row)
+                cursor.close()
+                connection.close()
+                if row:
+                    return redirect('products')
+                else:
+                    # Display an error message and redirect to the same page
+                    messages.error(request, 'Invalid Credentials.')
+                    return redirect(reverse('signin'))
+                
+        elif len(data) == 7:
+            if request.POST.get('password') == request.POST.get('password_2'):
+                with connection.cursor() as cursor:
+                    cursor.execute("SELECT * FROM CUSTOMERS WHERE CEMAIL = %s", [request.POST.get('email')])
+                    row = cursor.fetchone()
+                    cursor.close()
+                    connection.close()
+                    if row:
+                        messages.error(request, 'Account Already Exists.')
+                        return redirect(reverse('signin'))
+                    else:
+                        with connection.cursor() as cursor:
+                            cursor.execute("INSERT INTO CUSTOMERS(CNAME, CEMAIL, CCOUNTRY, CCITY, CPASSWORD) VALUES(%s, %s, %s, %s, %s)", [request.POST.get('name'), request.POST.get('email'), request.POST.get('country'), request.POST.get('city'), request.POST.get('password')])
+                            cursor.close()
+                            connection.close()
+                            messages.error(request, 'Account Created Successfully.')
+                            return redirect(reverse('signin'))
+                
+            else:
+                # Display an error message and redirect to the same page
+                messages.error(request, 'Passwords Do Not Match.')
+                return redirect(reverse('signin'))
+        else:
+            return render(request, 'UserApp/signin.html')
     # Render the HTML template signin.html with the data in the context variable
     return render(request, 'UserApp/signin.html')
 
@@ -53,6 +94,7 @@ def contact(request):
 def signin_admin(request):
     if request.method == "POST":
         data = request.POST
+        
         if len(data) == 4:
             with connection.cursor() as cursor:
                 cursor.execute("SELECT * FROM ADMINISTRATORS WHERE AEMAIL = %s AND APASSWORD = %s AND PASSCODE = %s", [request.POST.get('email'), request.POST.get('password'), request.POST.get('passcode')])
@@ -64,15 +106,31 @@ def signin_admin(request):
                     return redirect('admin')
                 else:
                     # Display an error message and redirect to the same page
-                    messages.error(request, 'Invalid credentials.')
+                    messages.error(request, 'Invalid Credentials.')
                     return redirect(reverse('signin_admin'))
+                
         elif len(data) == 7:
-            if request.POST.get('password') != request.POST.get('confirm_password'):
+            if request.POST.get('password') == request.POST.get('password_2'):
                 with connection.cursor() as cursor:
-                    cursor.execute("INSERT INTO ADMINISTRATORS(ANAME, AEMAIL, AJOB, PASSCODE, PASSWORD) VALUES(%s, %s, %s, %s, %s)", [request.POST.get('name'), request.POST.get('email'), request.POST.get('job'), request.POST.get('passcode'), request.POST.get('password')])
+                    cursor.execute("SELECT * FROM ADMINISTRATORS WHERE AEMAIL = %s", [request.POST.get('email')])
+                    row = cursor.fetchone()
                     cursor.close()
                     connection.close()
-                    return redirect(reverse('signin_admin'))
+                    if row:
+                        messages.error(request, 'Account Already Exists.')
+                        return redirect(reverse('signin_admin'))
+                    else:
+                        with connection.cursor() as cursor:
+                            cursor.execute("INSERT INTO ADMINISTRATORS(ANAME, AEMAIL, AJOB, PASSCODE, APASSWORD) VALUES(%s, %s, %s, %s, %s)", [request.POST.get('name'), request.POST.get('email'), request.POST.get('job'), request.POST.get('passcode'), request.POST.get('password')])
+                            cursor.close()
+                            connection.close()
+                            messages.error(request, 'Account Created Successfully.')
+                            return redirect(reverse('signin_admin'))
+                
+            else:
+                # Display an error message and redirect to the same page
+                messages.error(request, 'Passwords Do Not Match.')
+                return redirect(reverse('signin_admin'))
         else:
             return render(request, 'UserApp/signin_admin.html')
     return render(request, 'UserApp/signin_admin.html')
