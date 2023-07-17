@@ -123,37 +123,56 @@ def products_groceries(request):
     return render(request, 'UserApp/products_groceries.html')
 
 def cart(request):
-    # Connect to the database using the cursor
-    with connection.cursor() as cursor:
-        # Execute the query
-        cursor.execute("SELECT * FROM CURRUSER")
-        # Fetch the first row
-        row = cursor.fetchone()
-        # Check if the row does not exists
-        if not row:
-            # Redirect to the signin page
-            return redirect('signin')
-        # If the row exists
-        elif row:
-            # Execute the query
-            cursor.execute("SELECT * FROM ORDER_VIEW WHERE CUSTID = %s", [row[0]])
-            # Fetch the first row
-            products = cursor.fetchall()
-            print()
-            print(products)
-            context = {'products': products,}
-            return render(request, 'UserApp/cart.html', context=context)
-    # Check if the request method is POST
     if request.method == "POST":
         data = request.POST
-        # if len(data) == 3:
-        #     with connection.cursor() as cursor:
-        #         cursor.execute("", [request.POST.get('product_id')])
+        if len(data) == 2:
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM ORDERS WHERE ORDERID = %s", [request.POST.get('order_id')])
+                cursor.close()
+                connection.close()
+                return redirect('cart')
+    else:
+        # Connect to the database using the cursor
+        with connection.cursor() as cursor:
+            # Execute the query
+            cursor.execute("SELECT * FROM CURRUSER")
+            # Fetch the first row
+            row = cursor.fetchone()
+            # Check if the row does not exists
+            if not row:
+                # Redirect to the signin page
+                return redirect('signin')
+            # If the row exists
+            elif row:
+                # Execute the query
+                cursor.execute("SELECT * FROM ORDER_VIEW WHERE CUSTID = %s", [row[0]])
+                # Fetch the first row
+                products = cursor.fetchall()
+                context = {'products': products,}
+                return render(request, 'UserApp/cart.html', context=context)
                 
     # Render the HTML template cart.html
     return render(request, 'UserApp/cart.html')
 
 def checkout(request):
+    if request.method == "GET":
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM CURRUSER")
+            row = cursor.fetchone()
+            if row:
+                cursor.execute("SELECT SUM(PPRICE * ORDERQUANTITY) FROM ORDER_VIEW WHERE CUSTID = %s", [row[0]])
+                row_1 = cursor.fetchone()
+                cursor.execute("SELECT PIMAGE, PNAME, ORDERQUANTITY FROM ORDER_VIEW WHERE CUSTID = %s", [row[0]])
+                row_2 = cursor.fetchall()
+                cursor.close()
+                connection.close()
+                print(row_1)
+                print(row_2)
+                if row_1 and row_2:
+                    context = {'total': row_1[0], 'products': row_2}
+                    return render(request, 'UserApp/checkout.html', context=context)
+    elif request.method == "POST":
+        data = request.POST
     # Render the HTML template checkout.html
     return render(request, 'UserApp/checkout.html')
 

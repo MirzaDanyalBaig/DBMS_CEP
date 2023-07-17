@@ -62,70 +62,39 @@
             <div class="checkout__container container grid">
                 <div class="checkout__group">
                     <h3 class="section__title">Billing Details</h3>
-                    <form action="" class="form grid">
-                        <input type="text" placeholder="Name" class="form__input">
-                        <input type="text" placeholder="Address" class="form__input">
-                        <input type="text" placeholder="City" class="form__input">
-                        <input type="text" placeholder="Country" class="form__input">
-                        <input type="text" placeholder="PostCode" class="form__input">
-                        <input type="text" placeholder="Phone" class="form__input">
-                        <input type="text" placeholder="Email" class="form__input">
+                    <form action="" method="POST" class="form grid">
+                        <input type="text" name="name" placeholder="Name" class="form__input">
+                        <input type="text" name="address" placeholder="Address" class="form__input">
+                        <input type="text" name="city" placeholder="City" class="form__input">
+                        <input type="text" name="country" placeholder="Country" class="form__input">
+                        <input type="text" name="postcode" placeholder="PostCode" class="form__input">
+                        <input type="text" name="phone" placeholder="Phone" class="form__input">
+                        <input type="text" name="email" placeholder="Email" class="form__input">
                     </form>
                 </div>
 
                 <div class="checkout__group">
                     <h3 class="section__title">Cart Totals</h3>
-
+                    
                     <table class="order__table">
                         <tr>
+                            <th>Images</th>
                             <th>Products</th>
-                            <th>Totals</th>
                         </tr>
-
+                        {% for product in products %}
                         <tr>
                             <td>
-                                <img src="" alt="" class="order__img" />
+                                <img src="{{ product.0 }}" alt="image" class="order__img" />
                             </td>
 
                             <td>
-                                <h3 class="table__title">Nigga</h3>
-                                <p class="table__quantity"> x 2</p>
-                            </td>
-
-                            <td>
-                                <span class="table__price">$180</span>
+                                <h3 class="table__title">{{ product.1 }}</h3>
+                                <p class="table__quantity">{{ product.2 }}</p>
                             </td>
                         </tr>
+                        {% endfor %}
 
-                        <tr>
-                            <td>
-                                <img src="" alt="" class="order__img" />
-                            </td>
-                            <td>
-                                <h3 class="table__title">Nigga</h3>
-                                <p class="table__quantity"> x 2</p>
-                            </td>
-
-                            <td>
-                                <span class="table__price">$180</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <img src="" alt="" class="order__img" />
-                            </td>
-                            <td>
-                                <h3 class="table__title">Nigga</h3>
-                                <p class="table__quantity"> x 2</p>
-                            </td>
-
-                            <td>
-                                <span class="table__price">$180</span>
-                            </td>
-                        </tr>
-
-                        <tr>
+                        <!-- <tr>
                             <td><span class="order__subtitle">SubTotal</span></td>
                             <td colspan="2"><span class="table__price">$280</span></td>
                         </tr>
@@ -133,13 +102,14 @@
                         <tr>
                             <td><span class="order__subtitle">Shipping</span></td>
                             <td colspan="2"><span class="table__price">Free Shipping</span></td>
-                        </tr>
+                        </tr> -->
 
                         <tr>
                             <td><span class="order__subtitle">Total</span></td>
-                            <td colspan="2"><span class="order__grand-total">$280</span></td>
+                            <td colspan="2"><span class="order__grand-total">{{ total }}</span></td>
                         </tr>
                     </table>
+                    
                     <button class="btn btn--md">Place Order</button>
                 </div>
             </div>
