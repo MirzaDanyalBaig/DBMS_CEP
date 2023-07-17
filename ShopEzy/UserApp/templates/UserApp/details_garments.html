@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .background-image {
+          background-image: url('static/image/index_background.png');
+          background-repeat: no-repeat;
+          background-position: calc(100% - 10px) center;
+        }
+      </style>
+    <title>ShopEzy</title>
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="header__top">
+              <div class="header__container container">
+                <div class="header__contact">
+                  <span>(+92) - 305 - 2620311</span>
+                  <span>Our Location</span>
+                </div> 
+                <p class="header__alert-news">
+                  Discover deals and new arrivals at ShopEzy.com
+                </p>
+                <a href="signin" class="header__top-action">
+                  Login / Sign Up
+                </a>
+              </div>
+            </div>
+      
+            <nav class="nav container">
+              <a href="index" class="nav__logo">
+                <img src="../../static/image/logo.png" alt="company_logo" class="nav__logo" style="height: 75px;">
+                <img src="../../static/image/name.png" alt="company_name" class="nav__logo">
+              </a>
+              <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                  <li class="nav__item">
+                    <a href="index" class="nav__link">Home</a>
+                  </li>
+      
+                  <li class="nav__item">
+                    <a href="" class="nav__link">Contact</a>
+                  </li>
+      
+                  <li class="nav__item">
+                    <a href="" class="nav__link">About us</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </header>
+
+          <section class="details section--lg">
+            {% if product %}
+            <div class="details__container container grid">
+                <div class="details__group">
+                    <img src="{{ product.5 }}" alt="image" class="details__img"/>
+                </div>
+
+                <div class="details__group">
+                    <h3 class="details__title">{{ product.1 }}</h3>
+                    <p class="details__brand">Company: <span>{{  product_2.1  }}</span></p>
+                    <div class="details__price flex">
+                        <span class="price">{{ product.2 }} Rupees</span>
+                    </div>
+
+                    <pre class="short__description">{{ product.4 }}</pre>
+                    <br>
+                    <p class="availability">Availability: {{ available }}</p>
+                    <br>
+
+                    <div class="details__action">
+                        <input type="number" name="quantity" class="quantity" value="3" />
+                        <a href="#" class="btn btn--sm">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %} 
+          </section>
+    </body>
