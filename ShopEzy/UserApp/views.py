@@ -10,6 +10,11 @@ def index(request):
     return render(request, 'UserApp/index.html')
 
 def signin(request):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM CURRUSER")
+        row = cursor.fetchone()
+        if row:
+            return redirect('products')
     # Check if the request method is POST
     if request.method == "POST":
         # Get the data from the POST request
@@ -22,13 +27,18 @@ def signin(request):
                 cursor.execute("SELECT * FROM CUSTOMERS WHERE CEMAIL = %s AND CPASSWORD = %s", [request.POST.get('email'), request.POST.get('password')])
                 # Fetch the first row
                 row = cursor.fetchone()
-                id, *_ = row
                 # Close the cursor
                 cursor.close()
                 # Close the connection
                 connection.close()
                 # Check if the row exists
                 if row:
+                    # Get the customer id from the row
+                    id = row[0]
+                    # Connect to the database using the cursor
+                    with connection.cursor() as cursor:
+                        # Execute the query
+                        cursor.execute("INSERT INTO CURRUSER(CUSTID) VALUES(%s)", [id])
                     # Redirect to the products page
                     return redirect('products')
                 # If the row does not exist
@@ -64,6 +74,8 @@ def signin(request):
                         with connection.cursor() as cursor:
                             # Execute the query
                             cursor.execute("INSERT INTO CUSTOMERS(CNAME, CEMAIL, CCOUNTRY, CCITY, CPASSWORD) VALUES(%s, %s, %s, %s, %s)", [request.POST.get('name'), request.POST.get('email'), request.POST.get('country'), request.POST.get('city'), request.POST.get('password')])
+                            # Execute the query
+                            cursor.execute("INSERT INTO CART(CID) VALUES((SELECT CID FROM CUSTOMERS WHERE CEMAIL = %s))", [request.POST.get('email')])
                             # Close the cursor
                             cursor.close()
                             # Close the connection
@@ -98,8 +110,9 @@ def products(request):
         products = cursor.fetchall()
         # Store the rows in the context variable
         context = {'products': products,}
-    # Render the HTML template products.html with the data in the context variable
-    return render(request, 'UserApp/products.html', context=context)
+        # Render the HTML template products.html with the data in the context variable
+        return render(request, 'UserApp/products.html', context=context)
+    
 
 def products_garments(request):
     # Render the HTML template products_garments.html
@@ -110,6 +123,27 @@ def products_groceries(request):
     return render(request, 'UserApp/products_groceries.html')
 
 def cart(request):
+    # Connect to the database using the cursor
+    with connection.cursor() as cursor:
+        # Execute the query
+        cursor.execute("SELECT * FROM CURRUSER")
+        # Fetch the first row
+        row = cursor.fetchone()
+        # Check if the row does not exists
+        if not row:
+            # Redirect to the signin page
+            return redirect('signin')
+        # If the row exists
+        elif row:
+            # Execute the query
+            cursor.execute("SELECT * FROM ORDER_VIEW WHERE CUSTID = %s", [row[0]])
+            # Fetch the first row
+            products = cursor.fetchall()
+            print()
+            print(products)
+            context = {'products': products,}
+            return render(request, 'UserApp/cart.html', context=context)
+    # Check if the request method is POST
     if request.method == "POST":
         data = request.POST
         # if len(data) == 3:
@@ -126,6 +160,15 @@ def checkout(request):
 def details(request):
     # Check if the request method is POST
     if request.method == "POST":
+        if len(request.POST) == 3:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM CURRUSER")
+                row = cursor.fetchone()
+                if row:
+                    cursor.execute("INSERT INTO ORDERS(CUSTID, PRODID, ORDERQUANTITY) VALUES(%s, %s, %s)", [row[0], request.POST.get('product_id'), request.POST.get('quantity')])
+                    cursor.close()
+                    connection.close()
+                    messages.error(request, 'Order Placed Successfully.')
         # Connect to the database using the cursor
         with connection.cursor() as cursor:
             # Execute the query
@@ -302,11 +345,19 @@ def profile_customer(request):
     # Connect to the database using the cursor
     with connection.cursor() as cursor:
         # Execute the query
-        cursor.execute("SELECT * FROM customers")
-        # Fetch all the rows
-        customers = cursor.fetchall()
-        context = {'customers': customers,}
-    return render(request, 'UserApp/profile_customer.html', context=context)
+        cursor.execute("SELECT * FROM CURRUSER")
+        # Fetch one row
+        user = cursor.fetchone()
+        if user:
+        # Execute the query
+            cursor.execute("SELECT * FROM CUSTOMERS WHERE CUSTID = %s", [user[0]])
+            # Fetch one row
+            customer = cursor.fetchone()
+            # Close the cursor
+            if customer:
+                context = {'customer': customer,}
+                return render(request, 'UserApp/profile_customer.html', context=context)
+    return render(request, 'UserApp/profile_customer.html')
 
 def details_manager(request):
     with connection.cursor() as cursor:

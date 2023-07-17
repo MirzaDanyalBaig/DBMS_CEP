@@ -40,13 +40,17 @@
               <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                   <li class="nav__item">
-                    <a href="#" class="nav__link active-link">Products</a>
+                    <a href="products" class="nav__link active-link">Products</a>
                   </li>
                   
                   <li class="nav__item">
                     <a href="cart" class="nav__link">
                     <!-- {{ id }} -->
                     </a>
+                  </li>
+
+                  <li class="nav__item">
+                    <a href="cart" class="nav__link">Cart</a>
                   </li>
       
                   <li class="nav__item">
@@ -101,19 +105,12 @@
                         <a href="">
                           <h3 class="product__title">{{ product.1 }}</h3>
                         </a>
-                        <div class="product__rating">
-                          <i class="fi fi-rs-star"></i>
-                          <i class="fi fi-rs-star"></i>
-                          <i class="fi fi-rs-star"></i>
-                          <i class="fi fi-rs-star"></i>
-                          <i class="fi fi-rs-star"></i>
-                        </div>
                         <div class="product__price flex">
                           <span class="new__price">{{ product.2 }}</span>
                         </div>
-                        <a href="#" class="action__btn cart__btn" aria-label="Add To Cart">
+                        <!-- <a href="#" class="action__btn cart__btn" aria-label="Add To Cart">
                           <i class="fi fi-rs-shopping-bag-add"></i>
-                        </a>
+                        </a> -->
                       </div>
                     </div>
                     {% endfor %}
