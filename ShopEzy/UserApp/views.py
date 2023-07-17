@@ -22,6 +22,7 @@ def signin(request):
                 cursor.execute("SELECT * FROM CUSTOMERS WHERE CEMAIL = %s AND CPASSWORD = %s", [request.POST.get('email'), request.POST.get('password')])
                 # Fetch the first row
                 row = cursor.fetchone()
+                id, *_ = row
                 # Close the cursor
                 cursor.close()
                 # Close the connection
@@ -304,7 +305,6 @@ def profile_customer(request):
         cursor.execute("SELECT * FROM customers")
         # Fetch all the rows
         customers = cursor.fetchall()
-        # print(products)
         context = {'customers': customers,}
     return render(request, 'UserApp/profile_customer.html', context=context)
 
@@ -312,7 +312,6 @@ def details_manager(request):
     with connection.cursor() as cursor:
         cursor.execute("Select a.AdminID, a.AName, a.AEmail, a.APassword, a.PassCode, j.JobType, j.Salary from administrators a, job j Where a.PassCode = j.PassCode and a.PassCode <> 1;")
         details = cursor.fetchall()
-        # print(products)
         context = {'details': details,}
     return render(request, 'UserApp/details_manager.html', context=context)
 
@@ -320,7 +319,6 @@ def details_supervisor(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM customers;")
         details = cursor.fetchall()
-        # print(products)
         context = {'details': details,}
     return render(request, 'UserApp/details_supervisor.html', context=context)
 
@@ -328,7 +326,6 @@ def details_stockclerk(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM products;")
         details = cursor.fetchall()
-        # print(products)
         context = {'details': details,}
     return render(request, 'UserApp/details_stockclerk.html', context=context)
 
@@ -336,7 +333,6 @@ def shopping_history(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM order;")
         details = cursor.fetchall()
-        # print(products)
         context = {'details': details,}
     return render(request, 'UserApp/shopping_history.html', context=context)
     
@@ -345,6 +341,5 @@ def profile_admin(request):
     with connection.cursor() as cursor:
         cursor.execute("Select a.AName, a.AEmail, a.APassword, a.PassCode, j.JobType, j.Salary from administrators a, job j Where a.PassCode = j.PassCode;")
         customers = cursor.fetchall()
-        # print(products)
         context = {'customers': customers,}
     return render(request, 'UserApp/profile_admin.html', context=context)
