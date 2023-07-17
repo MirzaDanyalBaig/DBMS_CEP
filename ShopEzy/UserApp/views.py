@@ -3,7 +3,6 @@ from django.shortcuts import redirect, render
 from django.db import connection
 from django.contrib import messages
 from django.urls import reverse
-from django.contrib.sessions.backends.db import SessionStore
 
 # Create your views here.
 def index(request):
@@ -17,10 +16,7 @@ def signin(request):
             with connection.cursor() as cursor:
                 cursor.execute("SELECT * FROM CUSTOMERS WHERE CEMAIL = %s AND CPASSWORD = %s", [request.POST.get('email'), request.POST.get('password')])
                 row = cursor.fetchone()
-                session = SessionStore(session_key=request.session.session_key)
                 id, *_ = row
-                session['customer_id'] = id
-                session.save()
                 cursor.close()
                 connection.close()
                 if row:
@@ -61,13 +57,12 @@ def manager_admin(request):
     # Render the HTML template admin.html with the data in the context variable
     return render(request, 'UserApp/manager_admin.html')
 
-def products(request):
+def products(request, context):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM products")
         products = cursor.fetchall()
-        # print(products)
-        context = {'products': products,}
-    return render(request, 'UserApp/products.html', context=context)
+        context1 = {'products': products,}
+    return render(request, 'UserApp/products.html', context=context1)
 
 def products_garments(request):
     return render(request, 'UserApp/products_garments.html')
@@ -150,7 +145,7 @@ def signin_admin(request):
 
 def profile_customer(request):
     with connection.cursor() as cursor:
-        customer_id = request.session.get('customer_id')
+        customer_id = 1
         cursor.execute("SELECT * FROM customers WHERE CustID = %s", [customer_id])
         customers = cursor.fetchall()
         print(customer_id, customers)
@@ -168,7 +163,6 @@ def details_supervisor(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM customers;")
         details = cursor.fetchall()
-        # print(products)
         context = {'details': details,}
     return render(request, 'UserApp/details_supervisor.html', context=context)
 
@@ -176,7 +170,6 @@ def details_stockclerk(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM products;")
         details = cursor.fetchall()
-        # print(products)
         context = {'details': details,}
     return render(request, 'UserApp/details_stockclerk.html', context=context)
 
@@ -184,7 +177,6 @@ def shopping_history(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM order;")
         details = cursor.fetchall()
-        # print(products)
         context = {'details': details,}
     return render(request, 'UserApp/shopping_history.html', context=context)
     
@@ -193,6 +185,5 @@ def profile_admin(request):
     with connection.cursor() as cursor:
         cursor.execute("Select a.AName, a.AEmail, a.APassword, a.PassCode, j.JobType, j.Salary from administrators a, job j Where a.PassCode = j.PassCode;")
         customers = cursor.fetchall()
-        # print(products)
         context = {'customers': customers,}
     return render(request, 'UserApp/profile_admin.html', context=context)
