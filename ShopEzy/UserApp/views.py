@@ -120,7 +120,7 @@ def products(request):
     # Connect to the database using the cursor
     with connection.cursor() as cursor:
         # Execute the query
-        cursor.execute("SELECT * FROM PRODUCTS P, ELECTRONICS E WHERE P.PRODID=E.PRODID")
+        cursor.execute("SELECT * FROM PRODUCTS P")
         # Fetch all the rows
         products = cursor.fetchall()
         # Store the rows in the context variable
