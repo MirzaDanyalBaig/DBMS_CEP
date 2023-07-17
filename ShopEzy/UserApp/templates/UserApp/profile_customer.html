@@ -60,14 +60,35 @@
           <main class="main">
               <img src="../../static/image/profile_icon.png" alt="profile_icon" style="display: flex; padding-left: 47%; width: 700px;">
               <h1 class="home__title" style="text-align: center;"><span>Profile </span>Details</h1>
-                  <ul style="text-align: center;">
-                      <h2 class="home__subtitle">{{ customers.0 }}</h2>
-                      <h2 class="home__subtitle">{{ customers.1 }}</h2>
-                      <h2 class="home__subtitle">{{ customers.2 }}</h2>
-                      <h2 class="home__subtitle">{{ customers.3 }}</h2>
-                      <h2 class="home__subtitle">{{ customers.4 }}</h2>
-                      <h2 class="home__subtitle">{{ customers.5 }}</h2>
-                  </ul>
+
+              <table class="tablenew" style="padding: 0.6rem;;">
+                <tr class="table tr th" style="align-items: center;">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Address</th>
+                </tr>
+                {% if customer %}
+                <tr class="table tr th">
+                    <td>{{ customer.0 }}</td>
+                    <td>{{ customer.1 }}</td>
+                    <td>{{ customer.2 }}</td>
+                    <td>{{ customer.3 }}</td>
+                    <td>{{ customer.4 }}</td>
+                    <td>{{ customer.5 }}</td>
+                    <td>{{ customer.6 }}</td>
+                </tr>
+                {% endif %}
+            </table>
             </main>
+            <form action=""  class="form grid>
+              <div class="form__btn">
+                <button class="'btn flex btn--sm">Logout</button>
+              </div>
+            </form>
+            
     </body>
 </html>

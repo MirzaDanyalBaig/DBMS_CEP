@@ -39,15 +39,25 @@
               <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                   <li class="nav__item">
-                    <a href="index" class="nav__link">Home</a>
+                    <a href="products" class="nav__link active-link">Products</a>
+                  </li>
+                  
+                  <li class="nav__item">
+                    <a href="cart" class="nav__link">
+                    <!-- {{ id }} -->
+                    </a>
+                  </li>
+
+                  <li class="nav__item">
+                    <a href="cart" class="nav__link">Cart</a>
                   </li>
       
                   <li class="nav__item">
-                    <a href="" class="nav__link">Contact</a>
+                    <a href="shopping_history" class="nav__link">Shopping History</a>
                   </li>
-      
+
                   <li class="nav__item">
-                    <a href="" class="nav__link">About us</a>
+                    <a href="profile_customer" class="nav__link">Profile</a>
                   </li>
                 </ul>
               </div>
@@ -83,10 +93,11 @@
             {% endif %} 
           </section>
 
-          <!-- <script>
-            const quantity = document.getElementById("quantity");
-            const product_id = document.getElementById("product__id").innerHTML;
-            
-
-          </script> -->
+          {% if messages %}
+        {% for message in messages %}
+          <script>
+            alert("{{ message }}");
+          </script>
+        {% endfor %}
+      {% endif %}
     </body>

@@ -58,7 +58,34 @@
           </header>
 
           <main class="main">
-              <img src="../../static/image/profile_icon.png" alt="profile_icon" style="display: flex; padding-left: 47%; width: 700px;">
+            <img src="../../static/image/profile_icon.png" alt="profile_icon" style="display: flex; padding-left: 47%; width: 700px;">
+            <h1 class="home__title" style="text-align: center;"><span>Profile</span>Details</h1>
+            <table class="tablenew" style="padding: 0.6rem;;">
+                <tr class="table tr th" style="align-items: center;">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Address</th>
+                </tr>
+                {% for detail in details %}
+                <tr class="table tr th">
+                    <td>{{ detail.0 }}</td>
+                    <td>{{ detail.1 }}</td>
+                    <td>{{ detail.2 }}</td>
+                    <td>{{ detail.3 }}</td>
+                    <td>{{ detail.4 }}</td>
+                    <td>{{ detail.5 }}</td>
+                    <td>{{ detail.6 }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+          </main>
+
+          <main class="main">
+              
               <h1 class="home__title" style="text-align: center;"><span>Profile </span>Details</h1>
                   <ul style="text-align: center;">
                       <h2 class="home__subtitle"> detail.0 </h2>
