@@ -110,8 +110,21 @@
                         </tr>
                     </table>
                     
-                    <button class="btn btn--md">Place Order</button>
+                    <form action="/checkout" method="POST">
+                      {% csrf_token %}
+                      <button class="btn btn--rm">
+                        <input name="place_id" value="1" hidden>
+                      </input>
+                    </form>Place Order</button>
                 </div>
             </div>
           </section>
+
+      {% if messages %}
+        {% for message in messages %}
+          <script>
+            alert("{{ message }}");
+          </script>
+        {% endfor %}
+      {% endif %}
     </body>

@@ -19,6 +19,7 @@ def signin(request):
     if request.method == "POST":
         # Get the data from the POST request
         data = request.POST
+        print(data)
         # Check if the data has 3 elements
         if len(data) == 3:
             # Connect to the database using the cursor
@@ -90,6 +91,13 @@ def signin(request):
                 messages.error(request, 'Passwords Do Not Match.')
                 # Redirect to the signin page
                 return redirect(reverse('signin'))
+        elif len(data) == 2:
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM CURRUSER")
+                cursor.close()
+                connection.close()
+                messages.error(request, 'Logged Out Successfully.')
+                return redirect('signin')
         # If the data has neither 3 nor 7 elements
         else:
             # Render the HTML template signin.html
@@ -102,6 +110,13 @@ def manager_admin(request):
     return render(request, 'UserApp/manager_admin.html')
 
 def products(request):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM CURRUSER")
+        row = cursor.fetchone()
+        cursor.close()
+        connection.close()
+        if not row:
+            return redirect('signin')
     # Connect to the database using the cursor
     with connection.cursor() as cursor:
         # Execute the query
@@ -172,7 +187,12 @@ def checkout(request):
                     context = {'total': row_1[0], 'products': row_2}
                     return render(request, 'UserApp/checkout.html', context=context)
     elif request.method == "POST":
-        data = request.POST
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM ORDERS WHERE CUSTID = (SELECT CUSTID FROM CURRUSER)")
+            cursor.close()
+            connection.close()
+            messages.error(request, 'Order Placed Successfully.')
+            return redirect('checkout')
     # Render the HTML template checkout.html
     return render(request, 'UserApp/checkout.html')
 
@@ -361,6 +381,12 @@ def signin_admin(request):
 
 
 def profile_customer(request):
+    if request.method == "POST":
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM CURRUSER")
+            cursor.close()
+            connection.close()
+            messages.error(request, 'Logged Out Successfully.')
     # Connect to the database using the cursor
     with connection.cursor() as cursor:
         # Execute the query

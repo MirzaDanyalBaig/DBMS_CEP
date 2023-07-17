@@ -83,12 +83,14 @@
                 </tr>
                 {% endif %}
             </table>
-            </main>
-            <form action=""  class="form grid>
-              <div class="form__btn">
-                <button class="'btn flex btn--sm">Logout</button>
-              </div>
-            </form>
+          </main>
+            
+            <form action="signin" method="POST" style="padding-left: 45%;  ">
+              {% csrf_token %}
+              <button class="btn btn--rm">
+                <input name="logout" value="1" hidden>
+              </input>
+            </form>Logout</button>
             
     </body>
 </html>
