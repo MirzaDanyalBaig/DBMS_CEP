@@ -113,6 +113,11 @@ input {
     outline: none;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
 /* REUSABLE CSS CLASSES */
 .container {
     max-width: 1240px;
@@ -644,7 +649,7 @@ input {
 
 .table tr th:nth-child(1),
 .table tr td:nth-child(1) {
-    width: 216px;
+    width: 200px;
 }
 
 .table tr th:nth-child(2),
@@ -654,17 +659,17 @@ input {
 
 .table tr th:nth-child(3),
 .table tr td:nth-child(3) {
-    width: 108px;
+    width: 70px;
 }
 
 .table tr th:nth-child(4),
 .table tr td:nth-child(4) {
-    width: 220px;
+    width: 100px;
 }
 
 .table tr th:nth-child(5),
 .table tr td:nth-child(5) {
-    width: 200px;
+    width: 100px;
 }
 
 .table tr th:nth-child(6),
@@ -769,6 +774,18 @@ input {
     row-gap: 1rem;
 }
 
+.flex {
+    display: flex;
+    align-items: center;
+    column-gap: .5rem;
+}
+
+.btn--md {
+    font-family: var(--body-font);
+    height: 45px;
+    line-height: 42px;
+}
+
 .form__group {
     grid-template-columns: repeat(2,1 fr);
     gap: 1rem;
@@ -780,7 +797,49 @@ input {
     resize: none;
 }
 
+.checkout__container {
+    grid-template-columns: repeat(2, 1fr);
+}
 
+.checkout__group:nth-child(2) {
+    border: 1px solid var(--border-color-alt);
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+.checkout__group .section__title {
+    font-size: var(--small-font-size);
+}
+
+.checkout__title {
+    font-size: var(--small-font-size);
+}
+
+.order__table tr th,
+.order__table tr td {
+    border-top: 1px solid var(--border-color-alt);
+    padding: .5rem;
+    text-align: center;
+}
+
+.order__table tr th {
+    color: var(--title-color);
+    font-size: var(--small-font-size);
+}
+
+.order__img {
+    width: 80px;
+}
+
+.table__quantity,
+.order__subtitle {
+    font-size: var(--small-font-size);
+}
+
+.order__grand-total {
+    color: var(--first-color);
+    font-size: var(--large-font-size);
+}
 
 
 /* =========================habib part=============================*/
@@ -907,7 +966,7 @@ input {
 
 .grid {
     display: grid;
-    gap: 2.5rem;
+    gap: 1rem;
 }
 
 .section {
@@ -1408,4 +1467,30 @@ input {
 .tablenew__description {
     max-width: 250px;
     margin-inline: auto;
+}
+
+.total__products {
+    margin-bottom: 2rem;
+}
+
+.total__products span {
+    color: var(--first-color);
+    font-weight: var(--weight-600);
+}
+
+.details__tabs {
+    display: flex;
+    column-gap: 1.75rem;
+    margin-bottom: 3rem;
+}
+
+.detail__tab {
+    font-family: var(--second-font);
+    font-size: var(--large-font-size);
+    font-weight: var(--weight-600);
+    cursor: pointer;
+}
+
+.form {
+    row-gap: 1rem;
 }

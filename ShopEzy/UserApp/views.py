@@ -110,6 +110,12 @@ def products_groceries(request):
     return render(request, 'UserApp/products_groceries.html')
 
 def cart(request):
+    if request.method == "POST":
+        data = request.POST
+        # if len(data) == 3:
+        #     with connection.cursor() as cursor:
+        #         cursor.execute("", [request.POST.get('product_id')])
+                
     # Render the HTML template cart.html
     return render(request, 'UserApp/cart.html')
 

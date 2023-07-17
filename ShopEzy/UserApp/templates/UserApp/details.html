@@ -67,18 +67,26 @@
                     <div class="details__price flex">
                         <span class="price">{{ product.2 }} Rupees</span>
                     </div>
-
+                    <p id="product__id" hidden>{{ product.0 }}</p>
                     <pre class="short__description">{{ product.4 }}</pre>
                     <br>
                     <p class="availability">Availability: {{ available }}</p>
                     <br>
-
-                    <div class="details__action">
-                        <input type="number" name="quantity" class="quantity" value="3" />
-                        <a href="#" class="btn btn--sm">Add to Cart</a>
-                    </div>
+                    <form method="POST" action="/details" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ product.0 }}">
+                        <input id="quantity" type="number" name="quantity" class="quantity" value="1" />
+                        <button type="submit" class="btn btn--sm">Add to Cart</button>
+                    </form>
                 </div>
             </div>
             {% endif %} 
           </section>
+
+          <!-- <script>
+            const quantity = document.getElementById("quantity");
+            const product_id = document.getElementById("product__id").innerHTML;
+            
+
+          </script> -->
     </body>

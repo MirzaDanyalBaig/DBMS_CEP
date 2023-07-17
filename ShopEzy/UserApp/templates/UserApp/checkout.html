@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .background-image {
+          background-image: url('static/image/index_background.png');
+          background-repeat: no-repeat;
+          background-position: calc(100% - 10px) center;
+        }
+      </style>
+    <title>ShopEzy</title>
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    </head>
+
+	<body>
+        <header class="header">
+            <div class="header__top">
+              <div class="header__container container">
+                <div class="header__contact">
+                  <span>(+92) - 305 - 2620311</span>
+                  <span>Our Location</span>
+                </div> 
+                <p class="header__alert-news">
+                  Discover deals and new arrivals at ShopEzy.com
+                </p>
+                <p class="header__top-action">
+                  Enjoy your Shopping!!
+				</p>
+              </div>
+            </div>
+      
+            <nav class="nav container">
+              <a href="index" class="nav__logo">
+                <img src="../../static/image/logo.png" alt="company_logo" class="nav__logo" style="height: 75px;">
+                <img src="../../static/image/name.png" alt="company_name" class="nav__logo">
+              </a>
+              <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+					<li class="nav__item">
+						<a href="products" class="nav__link">Products</a>
+					  </li>
+		  
+					  <li class="nav__item">
+						<a href="#" class="nav__link active-link">Cart</a>
+					  </li>
+		  
+					  <li class="nav__item">
+						<a href="shopping_history" class="nav__link">Shopping History</a>
+					  </li>
+	
+					  <li class="nav__item">
+						<a href="profile_customer" class="nav__link">Profile</a>
+					  </li>
+                </ul>
+              </div>
+            </nav>
+          </header>
+
+          <section class="checkout section--lg">
+            <div class="checkout__container container grid">
+                <div class="checkout__group">
+                    <h3 class="section__title">Billing Details</h3>
+                    <form action="" class="form grid">
+                        <input type="text" placeholder="Name" class="form__input">
+                        <input type="text" placeholder="Address" class="form__input">
+                        <input type="text" placeholder="City" class="form__input">
+                        <input type="text" placeholder="Country" class="form__input">
+                        <input type="text" placeholder="PostCode" class="form__input">
+                        <input type="text" placeholder="Phone" class="form__input">
+                        <input type="text" placeholder="Email" class="form__input">
+                    </form>
+                </div>
+
+                <div class="checkout__group">
+                    <h3 class="section__title">Cart Totals</h3>
+
+                    <table class="order__table">
+                        <tr>
+                            <th>Products</th>
+                            <th>Totals</th>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <img src="" alt="" class="order__img" />
+                            </td>
+
+                            <td>
+                                <h3 class="table__title">Nigga</h3>
+                                <p class="table__quantity"> x 2</p>
+                            </td>
+
+                            <td>
+                                <span class="table__price">$180</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <img src="" alt="" class="order__img" />
+                            </td>
+                            <td>
+                                <h3 class="table__title">Nigga</h3>
+                                <p class="table__quantity"> x 2</p>
+                            </td>
+
+                            <td>
+                                <span class="table__price">$180</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <img src="" alt="" class="order__img" />
+                            </td>
+                            <td>
+                                <h3 class="table__title">Nigga</h3>
+                                <p class="table__quantity"> x 2</p>
+                            </td>
+
+                            <td>
+                                <span class="table__price">$180</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="order__subtitle">SubTotal</span></td>
+                            <td colspan="2"><span class="table__price">$280</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="order__subtitle">Shipping</span></td>
+                            <td colspan="2"><span class="table__price">Free Shipping</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="order__subtitle">Total</span></td>
+                            <td colspan="2"><span class="order__grand-total">$280</span></td>
+                        </tr>
+                    </table>
+                    <button class="btn btn--md">Place Order</button>
+                </div>
+            </div>
+          </section>
+    </body>
